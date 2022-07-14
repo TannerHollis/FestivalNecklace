@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name FestivalNecklace)(type KiCad)(uri ${KIPRJMOD}/FestivalNecklace.pretty)(options "")(descr ""))
+)

@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name "FestivalNecklace")(type "Legacy")(uri "${KIPRJMOD}/FestivalNecklace.lib")(options "")(descr ""))
+  (lib (name "FestivalNecklace-rescue")(type "Legacy")(uri "${KIPRJMOD}/FestivalNecklace-rescue.lib")(options "")(descr ""))
+)

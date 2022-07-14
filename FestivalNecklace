@@ -1,0 +1,28 @@
+Collated Components:										
+										
+Item	Qty	Reference(s)	Value	LibPart	Footprint	DK_PN	MANUFACTURER	PARTNO	PREVIOUSLY ORDERD	PRICE
+1	1	C1	1n	Device:C	Capacitor_SMD:C_0603_1608Metric	1276-1018-1-ND	Samsung Electro-Mechanics	CL10B102KB8NNNC	No	 $0.10 
+2	1	C2	22uF	Device:C	Capacitor_SMD:C_0805_2012Metric	1276-6460-1-ND	Samsung Electro-Mechanics	CL21A226MQQNNNG	No	 $0.14 
+3	1	C3	10uF	Device:C	Capacitor_SMD:C_0805_2012Metric	1276-1298-1-ND	Samsung Electro-Mechanics	CL21A106MQFNNNE	No	 $0.11 
+4	1	D1	D_Schottky	Device:D_Schottky	Diode_SMD:D_SOD-123F	1727-5192-1-ND	Nexperia USA Inc.	PMEG2010ER	Yes	 $0.42 
+5	1	D2	LED	Device:LED	LED_SMD:LED_1206_3216Metric	1080-1357-1-ND	Everlight Electronics Co Ltd	IR26-21C/L110/TR8	Yes	 $0.38 
+6	1	D3	D_Photo	Device:D_Photo	LED_SMD:LED_1206_3216Metric_Castellated	3147-B1501PD--H9B000113U1930CT-ND		B1501PD--H9B000113U1930	Yes	 $0.14 
+7	1	D4	LED	Device:LED	FestivalNecklace:APA3010SECK	754-1842-1-ND	Kingbright	APA3010SECK-GX	No	 $0.44 
+8	1	J1	Conn_01x02	Connector_Generic:Conn_01x02	Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical					
+9	1	J2	10118192-0002LF	FestivalNecklace:10118192-0002LF	FestivalNecklace:AMPHENOL_10118192-0002LF	609-5379-1-ND	Amphenol ICC (FCI)	10118192-0002LF		 $0.44 
+10	1	J3	Conn_02x03_Odd_Even	Connector_Generic:Conn_02x03_Odd_Even	Connector_PinHeader_1.00mm:PinHeader_2x03_P1.00mm_Vertical					
+11	1	L1	2.2u	Device:L	Inductor_SMD:L_0805_2012Metric	1292-WLPH201610M2R2PPCT-ND	Walsin Technology Corporation	WLPH201610M2R2PP		 $0.11 
+12	1	R1	750k	Device:R	Resistor_SMD:R_0603_1608Metric	RMCF0603FT750KCT-ND	Stackpole Electronics Inc	RMCF0603FT750K		 $0.10 
+13	2	"R2, R5"	1.5k	Device:R	Resistor_SMD:R_0603_1608Metric	311-1.50KHRCT-ND	YAGEO	RC0603FR-071K5L		 $0.10 
+14	1	R3	47	Device:R	Resistor_SMD:R_0603_1608Metric	10-ERJ-H3GJ470VCT-ND	Panasonic Electronic Components	ERJ-H3GJ470V		 $0.16 
+15	1	R4	470k	Device:R	Resistor_SMD:R_0603_1608Metric	A129720CT-ND	TE Connectivity Passive Product	CRGCQ0603F470K		 $0.10 
+16	1	R6	4.7k	Device:R	Resistor_SMD:R_0603_1608Metric	RR08P4.7KDCT-ND	Susumu	RR0816P-472-D		 $0.10 
+17	2	"R7, R8"	100k	Device:R	Resistor_SMD:R_0603_1608Metric	CR0603-JW-104ELFCT-ND	Bourns Inc.	CR0603-JW-104ELF		 $0.10 
+18	1	SW1	SW_Push_Dual	Switch:SW_SPST	FestivalNecklace:TL3301NF260QG	EG4374CT-ND	E-Switch	TL3301AF160QJ		 $0.46 
+19	1	SW2	SW_Push_Dual	Switch:SW_SPST	FestivalNecklace:EVQ-P7C01P	P16765CT-ND	Panasonic Electronic Components	EVQ-P7C01P		 $0.32 
+20	1	U1	ATtiny45V-10MU	MCU_Microchip_ATtiny:ATtiny45V-10MU	Package_DFN_QFN:QFN-20-1EP_4x4mm_P0.5mm_EP2.6x2.6mm	ATTINY45V-10MU-ND	Microchip Technology	ATTINY45V-10MU		 $1.97 
+21	10	"U2, U3, U4, U5, U6, U7, U8, U9, U10, U11"	WS2812B-B	FestivalNecklace:WS2812B-B	FestivalNecklace:LED_WS2812B-B		Worldsemi		1.62 mm	
+22	1	U12	MCP73832T-2ACI_OT	FestivalNecklace:MCP73832T-2ACI_OT	FestivalNecklace:SOT95P270X145-5N	MCP73832T-2ACI/OTCT-ND	Microchip Technology	MCP73832T-2ACI/OT		 $0.69 
+23	1	U13	PAM2401SCADJ	FestivalNecklace:PAM2401SCADJ	FestivalNecklace:PAM2401SCADJ	PAM2401SCADJDICT-ND	Diodes Incorporated	PAM2401SCADJ	No	 $1.05 
+										
+								Subtotal		 $7.43 

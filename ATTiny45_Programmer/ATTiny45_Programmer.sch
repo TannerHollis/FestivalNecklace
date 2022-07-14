@@ -1,0 +1,139 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Connector_Generic:Conn_02x05_Odd_Even J1
+U 1 1 6220D0E1
+P 4375 3950
+F 0 "J1" H 4425 4367 50  0000 C CNN
+F 1 "PROG_IN" H 4425 4276 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x05_P2.54mm_Vertical" H 4375 3950 50  0001 C CNN
+F 3 "~" H 4375 3950 50  0001 C CNN
+F 4 "1175-1609-ND" H 4375 3950 50  0001 C CNN "DK_PN"
+	1    4375 3950
+	1    0    0    -1  
+$EndComp
+Text GLabel 3900 3750 0    50   Input ~ 0
+MOSI
+Wire Wire Line
+	3900 3750 4175 3750
+Text GLabel 3900 3950 0    50   Input ~ 0
+~RESET~
+Wire Wire Line
+	3900 3950 4175 3950
+Text GLabel 3900 4050 0    50   Input ~ 0
+CLK
+Text GLabel 3900 4150 0    50   Input ~ 0
+MISO
+Wire Wire Line
+	3900 4050 4175 4050
+Wire Wire Line
+	3900 4150 4175 4150
+Wire Wire Line
+	5050 3625 5050 3750
+Wire Wire Line
+	5050 3750 4675 3750
+Wire Wire Line
+	5025 4300 5025 4150
+Wire Wire Line
+	5025 4050 4675 4050
+Wire Wire Line
+	4675 4150 5025 4150
+Connection ~ 5025 4150
+Wire Wire Line
+	5025 4150 5025 4050
+NoConn ~ 4175 3850
+NoConn ~ 4675 3850
+NoConn ~ 4675 3950
+$Comp
+L Connector_Generic:Conn_02x03_Odd_Even J2
+U 1 1 6220EDF4
+P 6975 3950
+F 0 "J2" H 7025 4267 50  0000 C CNN
+F 1 "PROG_OUT" H 7025 4176 50  0000 C CNN
+F 2 "Connector_PinHeader_1.00mm:PinHeader_2x03_P1.00mm_Vertical" H 6975 3950 50  0001 C CNN
+F 3 "~" H 6975 3950 50  0001 C CNN
+	1    6975 3950
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR0101
+U 1 1 6220DEA8
+P 5050 3625
+F 0 "#PWR0101" H 5050 3475 50  0001 C CNN
+F 1 "+5V" H 5065 3798 50  0000 C CNN
+F 2 "" H 5050 3625 50  0001 C CNN
+F 3 "" H 5050 3625 50  0001 C CNN
+	1    5050 3625
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR0102
+U 1 1 6220FA19
+P 6475 3750
+F 0 "#PWR0102" H 6475 3600 50  0001 C CNN
+F 1 "+5V" H 6490 3923 50  0000 C CNN
+F 2 "" H 6475 3750 50  0001 C CNN
+F 3 "" H 6475 3750 50  0001 C CNN
+	1    6475 3750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6475 3750 6475 3850
+Wire Wire Line
+	6475 3850 6775 3850
+$Comp
+L power:GND #PWR0103
+U 1 1 6220E399
+P 5025 4300
+F 0 "#PWR0103" H 5025 4050 50  0001 C CNN
+F 1 "GND" H 5030 4127 50  0000 C CNN
+F 2 "" H 5025 4300 50  0001 C CNN
+F 3 "" H 5025 4300 50  0001 C CNN
+	1    5025 4300
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0104
+U 1 1 622100A2
+P 7775 4100
+F 0 "#PWR0104" H 7775 3850 50  0001 C CNN
+F 1 "GND" H 7780 3927 50  0000 C CNN
+F 2 "" H 7775 4100 50  0001 C CNN
+F 3 "" H 7775 4100 50  0001 C CNN
+	1    7775 4100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7775 3850 7275 3850
+Wire Wire Line
+	7775 3850 7775 4100
+Text GLabel 6650 3950 0    50   Input ~ 0
+MOSI
+Wire Wire Line
+	6650 3950 6775 3950
+Text GLabel 6650 4050 0    50   Input ~ 0
+MISO
+Wire Wire Line
+	6650 4050 6775 4050
+Text GLabel 7425 3950 2    50   Input ~ 0
+~RESET~
+Wire Wire Line
+	7425 3950 7275 3950
+Text GLabel 7425 4050 2    50   Input ~ 0
+CLK
+Wire Wire Line
+	7425 4050 7275 4050
+$EndSCHEMATC

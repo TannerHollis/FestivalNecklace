@@ -1,0 +1,866 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="D">
+  <design>
+    <source>C:\Users\thollis\Google Drive\FestivalNecklace\FestivalNecklace\FestivalNecklace.sch</source>
+    <date>1/25/2022 5:40:51 PM</date>
+    <tool>Eeschema (5.1.10)-1</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title>Festival Necklace</title>
+        <company>Offset Power, LLC.</company>
+        <rev>A2</rev>
+        <date>1/20/2022</date>
+        <source>FestivalNecklace.sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="D3">
+      <value>D_Photo</value>
+      <footprint>LED_SMD:LED_1206_3216Metric_Castellated</footprint>
+      <datasheet>~</datasheet>
+      <fields>
+        <field name="DK-PN">3147-B1501PD--H9B000113U1930TR-ND</field>
+      </fields>
+      <libsource lib="Device" part="D_Photo" description="Photodiode"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>61E9C6EA</tstamp>
+    </comp>
+    <comp ref="R4">
+      <value>470k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>61E9D66C</tstamp>
+    </comp>
+    <comp ref="D2">
+      <value>LED</value>
+      <footprint>LED_SMD:LED_1206_3216Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields>
+        <field name="DK_PN">1080-1357-1-ND</field>
+      </fields>
+      <libsource lib="Device" part="LED" description="Light emitting diode"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>61EA265F</tstamp>
+    </comp>
+    <comp ref="R3">
+      <value>50</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>61EA34FA</tstamp>
+    </comp>
+    <comp ref="J3">
+      <value>Conn_02x03_Odd_Even</value>
+      <footprint>Connector_PinHeader_1.00mm:PinHeader_2x03_P1.00mm_Vertical</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Connector_Generic" part="Conn_02x03_Odd_Even" description="Generic connector, double row, 02x03, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>61EE4251</tstamp>
+    </comp>
+    <comp ref="SW2">
+      <value>SW_Push_Dual</value>
+      <footprint>FestivalNecklace:EVQ-P7C01P</footprint>
+      <datasheet>~</datasheet>
+      <fields>
+        <field name="DK_PN">P16765CT-ND</field>
+      </fields>
+      <libsource lib="Switch" part="SW_SPST" description="Single Pole Single Throw (SPST) switch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>61F16682</tstamp>
+    </comp>
+    <comp ref="SW1">
+      <value>SW_Push_Dual</value>
+      <footprint>FestivalNecklace:TL3301NF260QG</footprint>
+      <datasheet>~</datasheet>
+      <fields>
+        <field name="DK_PN">EG6055CT-ND</field>
+      </fields>
+      <libsource lib="Switch" part="SW_SPST" description="Single Pole Single Throw (SPST) switch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>61E90E37</tstamp>
+    </comp>
+    <comp ref="U2">
+      <value>WS2812B-B</value>
+      <footprint>FestivalNecklace:LED_WS2812B-B</footprint>
+      <fields>
+        <field name="MANUFACTURER">Worldsemi</field>
+        <field name="MAXIMUM_PACKAGE_HIEGHT">1.62 mm</field>
+        <field name="PARTREV">5</field>
+        <field name="STANDARD">Manufacturer Recommendations</field>
+      </fields>
+      <libsource lib="FestivalNecklace" part="WS2812B-B" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>61ED93BC</tstamp>
+    </comp>
+    <comp ref="U3">
+      <value>WS2812B-B</value>
+      <footprint>FestivalNecklace:LED_WS2812B-B</footprint>
+      <fields>
+        <field name="MANUFACTURER">Worldsemi</field>
+        <field name="MAXIMUM_PACKAGE_HIEGHT">1.62 mm</field>
+        <field name="PARTREV">5</field>
+        <field name="STANDARD">Manufacturer Recommendations</field>
+      </fields>
+      <libsource lib="FestivalNecklace" part="WS2812B-B" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>61EE4EEA</tstamp>
+    </comp>
+    <comp ref="U4">
+      <value>WS2812B-B</value>
+      <footprint>FestivalNecklace:LED_WS2812B-B</footprint>
+      <fields>
+        <field name="MANUFACTURER">Worldsemi</field>
+        <field name="MAXIMUM_PACKAGE_HIEGHT">1.62 mm</field>
+        <field name="PARTREV">5</field>
+        <field name="STANDARD">Manufacturer Recommendations</field>
+      </fields>
+      <libsource lib="FestivalNecklace" part="WS2812B-B" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>61EE7C65</tstamp>
+    </comp>
+    <comp ref="U5">
+      <value>WS2812B-B</value>
+      <footprint>FestivalNecklace:LED_WS2812B-B</footprint>
+      <fields>
+        <field name="MANUFACTURER">Worldsemi</field>
+        <field name="MAXIMUM_PACKAGE_HIEGHT">1.62 mm</field>
+        <field name="PARTREV">5</field>
+        <field name="STANDARD">Manufacturer Recommendations</field>
+      </fields>
+      <libsource lib="FestivalNecklace" part="WS2812B-B" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>61EECE81</tstamp>
+    </comp>
+    <comp ref="U6">
+      <value>WS2812B-B</value>
+      <footprint>FestivalNecklace:LED_WS2812B-B</footprint>
+      <fields>
+        <field name="MANUFACTURER">Worldsemi</field>
+        <field name="MAXIMUM_PACKAGE_HIEGHT">1.62 mm</field>
+        <field name="PARTREV">5</field>
+        <field name="STANDARD">Manufacturer Recommendations</field>
+      </fields>
+      <libsource lib="FestivalNecklace" part="WS2812B-B" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>61EEF270</tstamp>
+    </comp>
+    <comp ref="U1">
+      <value>ATtiny45V-10MU</value>
+      <footprint>Package_DFN_QFN:QFN-20-1EP_4x4mm_P0.5mm_EP2.6x2.6mm</footprint>
+      <datasheet>http://ww1.microchip.com/downloads/en/DeviceDoc/atmel-2586-avr-8-bit-microcontroller-attiny25-attiny45-attiny85_datasheet.pdf</datasheet>
+      <libsource lib="MCU_Microchip_ATtiny" part="ATtiny45V-10MU" description="10MHz, 4kB Flash, 256B SRAM, 256B EEPROM, debugWIRE, QFN-20"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>61EB67E2</tstamp>
+    </comp>
+    <comp ref="J2">
+      <value>10118192-0002LF</value>
+      <footprint>FestivalNecklace:AMPHENOL_10118192-0002LF</footprint>
+      <fields>
+        <field name="DK_PN">609-5379-1-ND</field>
+      </fields>
+      <libsource lib="FestivalNecklace" part="10118192-0002LF" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>61EC54ED</tstamp>
+    </comp>
+    <comp ref="U12">
+      <value>MCP73832T-2ACI_OT</value>
+      <footprint>FestivalNecklace:SOT95P270X145-5N</footprint>
+      <fields>
+        <field name="DK_PN">MCP73832T-2ACI/OTCT-ND</field>
+      </fields>
+      <libsource lib="FestivalNecklace" part="MCP73832T-2ACI_OT" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>61ED5A40</tstamp>
+    </comp>
+    <comp ref="R6">
+      <value>4.7k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>61EE8E0B</tstamp>
+    </comp>
+    <comp ref="D4">
+      <value>LED</value>
+      <footprint>FestivalNecklace:APA3010SECK</footprint>
+      <datasheet>~</datasheet>
+      <fields>
+        <field name="DK_PN">754-1069-2-ND</field>
+      </fields>
+      <libsource lib="Device" part="LED" description="Light emitting diode"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>61EFCCA4</tstamp>
+    </comp>
+    <comp ref="R5">
+      <value>1.5k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>61F1640E</tstamp>
+    </comp>
+    <comp ref="U7">
+      <value>WS2812B-B</value>
+      <footprint>FestivalNecklace:LED_WS2812B-B</footprint>
+      <fields>
+        <field name="MANUFACTURER">Worldsemi</field>
+        <field name="MAXIMUM_PACKAGE_HIEGHT">1.62 mm</field>
+        <field name="PARTREV">5</field>
+        <field name="STANDARD">Manufacturer Recommendations</field>
+      </fields>
+      <libsource lib="FestivalNecklace" part="WS2812B-B" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>61F0BC2B</tstamp>
+    </comp>
+    <comp ref="U8">
+      <value>WS2812B-B</value>
+      <footprint>FestivalNecklace:LED_WS2812B-B</footprint>
+      <fields>
+        <field name="MANUFACTURER">Worldsemi</field>
+        <field name="MAXIMUM_PACKAGE_HIEGHT">1.62 mm</field>
+        <field name="PARTREV">5</field>
+        <field name="STANDARD">Manufacturer Recommendations</field>
+      </fields>
+      <libsource lib="FestivalNecklace" part="WS2812B-B" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>61F0BC45</tstamp>
+    </comp>
+    <comp ref="U9">
+      <value>WS2812B-B</value>
+      <footprint>FestivalNecklace:LED_WS2812B-B</footprint>
+      <fields>
+        <field name="MANUFACTURER">Worldsemi</field>
+        <field name="MAXIMUM_PACKAGE_HIEGHT">1.62 mm</field>
+        <field name="PARTREV">5</field>
+        <field name="STANDARD">Manufacturer Recommendations</field>
+      </fields>
+      <libsource lib="FestivalNecklace" part="WS2812B-B" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>61F0BC60</tstamp>
+    </comp>
+    <comp ref="U10">
+      <value>WS2812B-B</value>
+      <footprint>FestivalNecklace:LED_WS2812B-B</footprint>
+      <fields>
+        <field name="MANUFACTURER">Worldsemi</field>
+        <field name="MAXIMUM_PACKAGE_HIEGHT">1.62 mm</field>
+        <field name="PARTREV">5</field>
+        <field name="STANDARD">Manufacturer Recommendations</field>
+      </fields>
+      <libsource lib="FestivalNecklace" part="WS2812B-B" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>61F0BC7B</tstamp>
+    </comp>
+    <comp ref="U11">
+      <value>WS2812B-B</value>
+      <footprint>FestivalNecklace:LED_WS2812B-B</footprint>
+      <fields>
+        <field name="MANUFACTURER">Worldsemi</field>
+        <field name="MAXIMUM_PACKAGE_HIEGHT">1.62 mm</field>
+        <field name="PARTREV">5</field>
+        <field name="STANDARD">Manufacturer Recommendations</field>
+      </fields>
+      <libsource lib="FestivalNecklace" part="WS2812B-B" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>61F0BC96</tstamp>
+    </comp>
+    <comp ref="U13">
+      <value>PAM2401SCADJ</value>
+      <footprint>FestivalNecklace:PAM2401SCADJ</footprint>
+      <fields>
+        <field name="DK_PN">PAM2401SCADJDICT-ND</field>
+      </fields>
+      <libsource lib="FestivalNecklace" part="PAM2401SCADJ" description=""/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>61EFA9EE</tstamp>
+    </comp>
+    <comp ref="J1">
+      <value>Conn_01x02</value>
+      <footprint>Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Connector_Generic" part="Conn_01x02" description="Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>61F15849</tstamp>
+    </comp>
+    <comp ref="R8">
+      <value>100k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>61F29F7E</tstamp>
+    </comp>
+    <comp ref="R2">
+      <value>1.5k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>61F4B112</tstamp>
+    </comp>
+    <comp ref="R7">
+      <value>100k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>61FCAAAA</tstamp>
+    </comp>
+    <comp ref="R1">
+      <value>750k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="R" description="Resistor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>61FCB095</tstamp>
+    </comp>
+    <comp ref="L1">
+      <value>2.2u</value>
+      <footprint>Inductor_SMD:L_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <fields>
+        <field name="DK_PN">1292-WLPH201610M2R2PPCT-ND</field>
+      </fields>
+      <libsource lib="Device" part="L" description="Inductor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>61FDCABF</tstamp>
+    </comp>
+    <comp ref="C1">
+      <value>1n</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>6204944C</tstamp>
+    </comp>
+    <comp ref="C2">
+      <value>22uF</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>6209891B</tstamp>
+    </comp>
+    <comp ref="C3">
+      <value>10uF</value>
+      <footprint>Capacitor_SMD:C_0805_2012Metric</footprint>
+      <datasheet>~</datasheet>
+      <libsource lib="Device" part="C" description="Unpolarized capacitor"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>620AFAB1</tstamp>
+    </comp>
+    <comp ref="D1">
+      <value>D_Schottky</value>
+      <footprint>Diode_SMD:D_SOD-123F</footprint>
+      <datasheet>~</datasheet>
+      <fields>
+        <field name="DK_PN">1727-5192-1-ND</field>
+      </fields>
+      <libsource lib="Device" part="D_Schottky" description="Schottky diode"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamp>620F2B8A</tstamp>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="Connector_Generic" part="Conn_01x02">
+      <description>Generic connector, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Connector*:*_1x??_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_01x02</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Connector_Generic" part="Conn_02x03_Odd_Even">
+      <description>Generic connector, double row, 02x03, odd/even pin numbering scheme (row 1 odd numbers, row 2 even numbers), script generated (kicad-library-utils/schlib/autogen/connector/)</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Connector*:*_2x??_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">Conn_02x03_Odd_Even</field>
+      </fields>
+      <pins>
+        <pin num="1" name="Pin_1" type="passive"/>
+        <pin num="2" name="Pin_2" type="passive"/>
+        <pin num="3" name="Pin_3" type="passive"/>
+        <pin num="4" name="Pin_4" type="passive"/>
+        <pin num="5" name="Pin_5" type="passive"/>
+        <pin num="6" name="Pin_6" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="C">
+      <description>Unpolarized capacitor</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>C_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="D_Photo">
+      <description>Photodiode</description>
+      <docs>~</docs>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">D_Photo</field>
+      </fields>
+      <pins>
+        <pin num="1" name="K" type="passive"/>
+        <pin num="2" name="A" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="D_Schottky">
+      <description>Schottky diode</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>TO-???*</fp>
+        <fp>*_Diode_*</fp>
+        <fp>*SingleDiode*</fp>
+        <fp>D_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">D_Schottky</field>
+      </fields>
+      <pins>
+        <pin num="1" name="K" type="passive"/>
+        <pin num="2" name="A" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="L">
+      <description>Inductor</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>Choke_*</fp>
+        <fp>*Coil*</fp>
+        <fp>Inductor_*</fp>
+        <fp>L_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">L</field>
+        <field name="Value">L</field>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="LED">
+      <description>Light emitting diode</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>LED*</fp>
+        <fp>LED_SMD:*</fp>
+        <fp>LED_THT:*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">D</field>
+        <field name="Value">LED</field>
+      </fields>
+      <pins>
+        <pin num="1" name="K" type="passive"/>
+        <pin num="2" name="A" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Device" part="R">
+      <description>Resistor</description>
+      <docs>~</docs>
+      <footprints>
+        <fp>R_*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~" type="passive"/>
+        <pin num="2" name="~" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="FestivalNecklace" part="10118192-0002LF">
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">10118192-0002LF</field>
+        <field name="Footprint">FestivalNecklace:AMPHENOL_10118192-0002LF</field>
+      </fields>
+      <pins>
+        <pin num="1" name="VCC" type="power_in"/>
+        <pin num="2" name="D-" type="BiDi"/>
+        <pin num="3" name="D+" type="BiDi"/>
+        <pin num="4" name="ID" type="BiDi"/>
+        <pin num="5" name="GND" type="power_in"/>
+        <pin num="S1" name="SHIELD" type="passive"/>
+        <pin num="S2" name="SHIELD" type="passive"/>
+        <pin num="S3" name="SHIELD" type="passive"/>
+        <pin num="S4" name="SHIELD" type="passive"/>
+        <pin num="S5" name="SHIELD" type="passive"/>
+        <pin num="S6" name="SHIELD" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="FestivalNecklace" part="MCP73832T-2ACI_OT">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">MCP73832T-2ACI_OT</field>
+        <field name="Footprint">FestivalNecklace:SOT95P270X145-5N</field>
+        <field name="DK_PN">MCP73832T-2ACI/OTCT-ND</field>
+      </fields>
+      <pins>
+        <pin num="1" name="STAT" type="output"/>
+        <pin num="2" name="VSS" type="power_in"/>
+        <pin num="3" name="VBAT" type="output"/>
+        <pin num="4" name="VDD" type="input"/>
+        <pin num="5" name="PROG" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="FestivalNecklace" part="PAM2401SCADJ">
+      <footprints>
+        <fp>MSOP8_DIO</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">PAM2401SCADJ</field>
+        <field name="Footprint">FestivalNecklace:PAM2401SCADJ</field>
+        <field name="DK_PN">PAM2401SCADJDICT-ND</field>
+      </fields>
+      <pins>
+        <pin num="1" name="LX" type="unspc"/>
+        <pin num="2" name="EN" type="unspc"/>
+        <pin num="3" name="VIN" type="input"/>
+        <pin num="4" name="AGND" type="power_in"/>
+        <pin num="5" name="FB" type="unspc"/>
+        <pin num="6" name="RSET" type="unspc"/>
+        <pin num="7" name="OUT" type="output"/>
+        <pin num="8" name="PGND" type="power_in"/>
+      </pins>
+    </libpart>
+    <libpart lib="FestivalNecklace" part="WS2812B-B">
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">WS2812B-B</field>
+        <field name="Footprint">LED_WS2812B-B</field>
+        <field name="STANDARD">Manufacturer Recommendations</field>
+        <field name="MAXIMUM_PACKAGE_HIEGHT">1.62 mm</field>
+        <field name="PARTREV">5</field>
+        <field name="MANUFACTURER">Worldsemi</field>
+      </fields>
+      <pins>
+        <pin num="1" name="VDD" type="power_in"/>
+        <pin num="2" name="DOUT" type="output"/>
+        <pin num="3" name="VSS" type="power_in"/>
+        <pin num="4" name="DIN" type="input"/>
+      </pins>
+    </libpart>
+    <libpart lib="MCU_Microchip_ATtiny" part="ATtiny25V-10MU">
+      <aliases>
+        <alias>ATtiny25-20MU</alias>
+        <alias>ATtiny45V-10MU</alias>
+        <alias>ATtiny45-20MU</alias>
+        <alias>ATtiny85V-10MU</alias>
+        <alias>ATtiny85-20MU</alias>
+      </aliases>
+      <description>10MHz, 2kB Flash, 128B SRAM, 128B EEPROM, debugWIRE, QFN-20</description>
+      <docs>http://ww1.microchip.com/downloads/en/DeviceDoc/atmel-2586-avr-8-bit-microcontroller-attiny25-attiny45-attiny85_datasheet.pdf</docs>
+      <footprints>
+        <fp>QFN*1EP*4x4mm*P0.5mm*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">U</field>
+        <field name="Value">ATtiny25V-10MU</field>
+        <field name="Footprint">Package_DFN_QFN:QFN-20-1EP_4x4mm_P0.5mm_EP2.6x2.6mm</field>
+      </fields>
+      <pins>
+        <pin num="1" name="~RESET~/PB5" type="BiDi"/>
+        <pin num="2" name="XTAL1/PB3" type="BiDi"/>
+        <pin num="3" name="NC" type="NotConnected"/>
+        <pin num="4" name="NC" type="NotConnected"/>
+        <pin num="5" name="XTAL2/PB4" type="BiDi"/>
+        <pin num="6" name="NC" type="NotConnected"/>
+        <pin num="7" name="NC" type="NotConnected"/>
+        <pin num="8" name="GND" type="power_in"/>
+        <pin num="9" name="NC" type="NotConnected"/>
+        <pin num="10" name="NC" type="NotConnected"/>
+        <pin num="11" name="AREF/PB0" type="BiDi"/>
+        <pin num="12" name="PB1" type="BiDi"/>
+        <pin num="13" name="NC" type="NotConnected"/>
+        <pin num="14" name="PB2" type="BiDi"/>
+        <pin num="15" name="VCC" type="power_in"/>
+        <pin num="16" name="NC" type="NotConnected"/>
+        <pin num="17" name="NC" type="NotConnected"/>
+        <pin num="18" name="NC" type="NotConnected"/>
+        <pin num="19" name="NC" type="NotConnected"/>
+        <pin num="20" name="NC" type="NotConnected"/>
+        <pin num="21" name="GND" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="Switch" part="SW_SPST">
+      <description>Single Pole Single Throw (SPST) switch</description>
+      <docs>~</docs>
+      <fields>
+        <field name="Reference">SW</field>
+        <field name="Value">SW_SPST</field>
+      </fields>
+      <pins>
+        <pin num="1" name="A" type="passive"/>
+        <pin num="2" name="B" type="passive"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="Connector_Generic">
+      <uri>C:\Program Files\KiCad\share\kicad\library/Connector_Generic.lib</uri>
+    </library>
+    <library logical="Device">
+      <uri>C:\Program Files\KiCad\share\kicad\library/Device.lib</uri>
+    </library>
+    <library logical="FestivalNecklace">
+      <uri>C:\Users\thollis\Google Drive\FestivalNecklace\FestivalNecklace/FestivalNecklace.lib</uri>
+    </library>
+    <library logical="MCU_Microchip_ATtiny">
+      <uri>C:\Program Files\KiCad\share\kicad\library/MCU_Microchip_ATtiny.lib</uri>
+    </library>
+    <library logical="Switch">
+      <uri>C:\Program Files\KiCad\share\kicad\library/Switch.lib</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="Net-(U8-Pad2)">
+      <node ref="U9" pin="4"/>
+      <node ref="U8" pin="2"/>
+    </net>
+    <net code="2" name="VCC">
+      <node ref="U7" pin="1"/>
+      <node ref="D2" pin="2"/>
+      <node ref="U8" pin="1"/>
+      <node ref="U1" pin="15"/>
+      <node ref="U5" pin="1"/>
+      <node ref="D1" pin="1"/>
+      <node ref="J3" pin="1"/>
+      <node ref="U3" pin="1"/>
+      <node ref="U2" pin="1"/>
+      <node ref="D3" pin="1"/>
+      <node ref="U4" pin="1"/>
+      <node ref="U6" pin="1"/>
+      <node ref="U10" pin="1"/>
+      <node ref="U11" pin="1"/>
+      <node ref="U9" pin="1"/>
+    </net>
+    <net code="3" name="Net-(U10-Pad2)">
+      <node ref="U10" pin="2"/>
+      <node ref="U11" pin="4"/>
+    </net>
+    <net code="4" name="GND">
+      <node ref="U3" pin="3"/>
+      <node ref="J3" pin="2"/>
+      <node ref="U2" pin="3"/>
+      <node ref="R8" pin="1"/>
+      <node ref="J1" pin="2"/>
+      <node ref="U13" pin="8"/>
+      <node ref="R7" pin="1"/>
+      <node ref="SW2" pin="1"/>
+      <node ref="U1" pin="21"/>
+      <node ref="U4" pin="3"/>
+      <node ref="J2" pin="S2"/>
+      <node ref="U12" pin="4"/>
+      <node ref="J2" pin="S6"/>
+      <node ref="J2" pin="S5"/>
+      <node ref="J2" pin="S4"/>
+      <node ref="J2" pin="S3"/>
+      <node ref="U5" pin="3"/>
+      <node ref="R4" pin="1"/>
+      <node ref="U6" pin="3"/>
+      <node ref="J2" pin="S1"/>
+      <node ref="J2" pin="5"/>
+      <node ref="U1" pin="8"/>
+      <node ref="R6" pin="1"/>
+      <node ref="C2" pin="2"/>
+      <node ref="U13" pin="4"/>
+      <node ref="U11" pin="3"/>
+      <node ref="C3" pin="2"/>
+      <node ref="U10" pin="3"/>
+      <node ref="U7" pin="3"/>
+      <node ref="U8" pin="3"/>
+      <node ref="U9" pin="3"/>
+    </net>
+    <net code="5" name="Net-(U10-Pad4)">
+      <node ref="U10" pin="4"/>
+      <node ref="U9" pin="2"/>
+    </net>
+    <net code="6" name="EN">
+      <node ref="R2" pin="2"/>
+      <node ref="R8" pin="2"/>
+      <node ref="SW1" pin="1"/>
+      <node ref="U13" pin="2"/>
+    </net>
+    <net code="7" name="Net-(U11-Pad2)">
+      <node ref="U11" pin="2"/>
+    </net>
+    <net code="8" name="Net-(R5-Pad2)">
+      <node ref="R5" pin="2"/>
+      <node ref="U12" pin="1"/>
+    </net>
+    <net code="9" name="Net-(D4-Pad1)">
+      <node ref="R5" pin="1"/>
+      <node ref="D4" pin="1"/>
+    </net>
+    <net code="10" name="Net-(D4-Pad2)">
+      <node ref="U12" pin="2"/>
+      <node ref="D4" pin="2"/>
+      <node ref="J2" pin="1"/>
+    </net>
+    <net code="11" name="VBAT">
+      <node ref="J1" pin="1"/>
+      <node ref="SW1" pin="2"/>
+      <node ref="U12" pin="3"/>
+      <node ref="U13" pin="3"/>
+      <node ref="L1" pin="1"/>
+      <node ref="C3" pin="1"/>
+    </net>
+    <net code="12" name="Net-(R6-Pad2)">
+      <node ref="U12" pin="5"/>
+      <node ref="R6" pin="2"/>
+    </net>
+    <net code="13" name="Net-(U7-Pad2)">
+      <node ref="U8" pin="4"/>
+      <node ref="U7" pin="2"/>
+    </net>
+    <net code="14" name="Net-(U13-Pad6)">
+      <node ref="U13" pin="6"/>
+    </net>
+    <net code="15" name="LED_DO5">
+      <node ref="U6" pin="2"/>
+      <node ref="U7" pin="4"/>
+    </net>
+    <net code="16" name="Net-(L1-Pad2)">
+      <node ref="L1" pin="2"/>
+      <node ref="U13" pin="1"/>
+    </net>
+    <net code="17" name="Net-(C1-Pad2)">
+      <node ref="C1" pin="2"/>
+      <node ref="R1" pin="1"/>
+      <node ref="R7" pin="2"/>
+      <node ref="U13" pin="5"/>
+    </net>
+    <net code="18" name="PWR_EN">
+      <node ref="R2" pin="1"/>
+      <node ref="U1" pin="5"/>
+    </net>
+    <net code="19" name="Net-(C1-Pad1)">
+      <node ref="R1" pin="2"/>
+      <node ref="D1" pin="2"/>
+      <node ref="U13" pin="7"/>
+      <node ref="C2" pin="1"/>
+      <node ref="C1" pin="1"/>
+    </net>
+    <net code="20" name="IR_TX-MOSI">
+      <node ref="U1" pin="11"/>
+      <node ref="J3" pin="3"/>
+      <node ref="R3" pin="1"/>
+    </net>
+    <net code="21" name="IR_RX-CLK">
+      <node ref="J3" pin="6"/>
+      <node ref="U1" pin="14"/>
+      <node ref="R4" pin="2"/>
+      <node ref="D3" pin="2"/>
+    </net>
+    <net code="22" name="LED_DO-MISO">
+      <node ref="J3" pin="5"/>
+      <node ref="U1" pin="12"/>
+      <node ref="U2" pin="4"/>
+    </net>
+    <net code="23" name="~RESET~">
+      <node ref="U1" pin="1"/>
+      <node ref="J3" pin="4"/>
+    </net>
+    <net code="24" name="Net-(U2-Pad2)">
+      <node ref="U3" pin="4"/>
+      <node ref="U2" pin="2"/>
+    </net>
+    <net code="25" name="BTTN">
+      <node ref="U1" pin="2"/>
+      <node ref="SW2" pin="2"/>
+    </net>
+    <net code="26" name="Net-(D2-Pad1)">
+      <node ref="R3" pin="2"/>
+      <node ref="D2" pin="1"/>
+    </net>
+    <net code="27" name="Net-(U1-Pad4)">
+      <node ref="U1" pin="4"/>
+    </net>
+    <net code="28" name="Net-(J2-Pad4)">
+      <node ref="J2" pin="4"/>
+    </net>
+    <net code="29" name="Net-(J2-Pad3)">
+      <node ref="J2" pin="3"/>
+    </net>
+    <net code="30" name="Net-(J2-Pad2)">
+      <node ref="J2" pin="2"/>
+    </net>
+    <net code="31" name="Net-(U1-Pad9)">
+      <node ref="U1" pin="9"/>
+    </net>
+    <net code="32" name="Net-(U1-Pad7)">
+      <node ref="U1" pin="7"/>
+    </net>
+    <net code="33" name="Net-(U1-Pad6)">
+      <node ref="U1" pin="6"/>
+    </net>
+    <net code="34" name="Net-(U1-Pad3)">
+      <node ref="U1" pin="3"/>
+    </net>
+    <net code="35" name="Net-(U1-Pad20)">
+      <node ref="U1" pin="20"/>
+    </net>
+    <net code="36" name="Net-(U1-Pad19)">
+      <node ref="U1" pin="19"/>
+    </net>
+    <net code="37" name="Net-(U1-Pad18)">
+      <node ref="U1" pin="18"/>
+    </net>
+    <net code="38" name="Net-(U1-Pad17)">
+      <node ref="U1" pin="17"/>
+    </net>
+    <net code="39" name="Net-(U1-Pad16)">
+      <node ref="U1" pin="16"/>
+    </net>
+    <net code="40" name="Net-(U1-Pad13)">
+      <node ref="U1" pin="13"/>
+    </net>
+    <net code="41" name="Net-(U3-Pad2)">
+      <node ref="U4" pin="4"/>
+      <node ref="U3" pin="2"/>
+    </net>
+    <net code="42" name="Net-(U5-Pad2)">
+      <node ref="U6" pin="4"/>
+      <node ref="U5" pin="2"/>
+    </net>
+    <net code="43" name="Net-(U4-Pad2)">
+      <node ref="U4" pin="2"/>
+      <node ref="U5" pin="4"/>
+    </net>
+    <net code="44" name="Net-(U1-Pad10)">
+      <node ref="U1" pin="10"/>
+    </net>
+  </nets>
+</export>
