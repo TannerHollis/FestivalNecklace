@@ -3,11 +3,11 @@
 #include <avr/interrupt.h>
 #include "light_ws2812.h"
 
-#define IR_TX_PIN	PB0
-#define LED_DO_PIN	PB1
-#define IR_RX_PIN	PB2
-#define BTTN_PIN	PB3
-#define PWR_EN_PIN	PB4
+#define IR_TX_PIN	PA0
+#define LED_DO_PIN	PA1
+#define IR_RX_PIN	PA2
+#define BTTN_PIN	PA3
+#define PWR_EN_PIN	PA4
 
 #define LEDS_NUM 10
 
@@ -26,9 +26,9 @@
 #define IDLE_TICKS_TIMEOUT	5
 #define IDLE_SAVE_NEW_FRIEND_TICKS_TIMEOUT 5
 
-#define CORRECT_COLOR_R 128
-#define CORRECT_COLOR_G 255
-#define CORRECT_COLOR_B 200
+#define CORRECT_COLOR_R 31
+#define CORRECT_COLOR_G 50
+#define CORRECT_COLOR_B 50
 
 #define SEQUENCE_WAVE_PIXEL_TRAVEL 2
 
@@ -36,19 +36,20 @@
 typedef enum {
 	SEQUENCE_FADE_IN_SEQUENCE = 0,
 	SEQUENCE_FADE_OUT_SEQUENCE,
-	SEQUENCE_FADE_INOUT_SEQUENCE,
-	SEQUENCE_FLASH,
 	SEQUENCE_FADE_IN,
 	SEQUENCE_FADE_OUT,
+	SEQUENCE_TX_ALERT,
+	SEQUENCE_RX_ALERT
+	SEQUENCE_FADE_INOUT_SEQUENCE,
 	SEQUENCE_FADE_INOUT,
+	SEQUENCE_FLASH,
 	SEQUENCE_SEQUENCE,
 	SEQUENCE_PULSE,
 	SEQUENCE_ROTATE,
 	SEQUENCE_CHASE,
 	SEQUENCE_WAVE,
 	SEQUENCE_RAINBOW,
-	SEQUENCE_TX_ALERT,
-	SEQUENCE_RX_ALERT
+	
 } Sequence_TypeDef;
 
 typedef enum {
@@ -87,16 +88,58 @@ static void delay(uint16_t time_ms);
 static void pwr_off();
 
 //Initialize EEPROM
-uint8_t EEMEM leds_memory[] = { 240, 125, 0,
-	0, 0, 0,
-	0, 0, 0,
-	0, 0, 0,
-	0, 0, 0,
-	0, 0, 0,
-	0, 0, 0,
-	0, 0, 0,
-	0, 0, 0,
-	0, 0, 0};
+struct cRGB EEMEM leds_memory[LEDS_NUM] = {
+	[0] {
+		.r = 255,
+		.g = 0,
+		.b = 0
+	},
+	[1] {
+		.r = 0,
+		.g = 255,
+		.b = 0
+	},
+	[2] {
+		.r = 0,
+		.g = 0,
+		.b = 255
+	},
+	[3] {
+		.r = 255,
+		.g = 0,
+		.b = 0
+	},
+	[4] {
+		.r = 0,
+		.g = 255,
+		.b = 0
+	},
+	[5] {
+		.r = 0,
+		.g = 0,
+		.b = 255
+	},
+	[6] {
+		.r = 255,
+		.g = 0,
+		.b = 0
+	},
+	[7] {
+		.r = 0,
+		.g = 255,
+		.b = 0
+	},
+	[8] {
+		.r = 0,
+		.g = 0,
+		.b = 255
+	},
+	[9] {
+		.r = 0,
+		.g = 128,
+		.b = 128
+	}
+};
 uint8_t EEMEM friends_cnt = 0;
 
 //LED Data
@@ -118,12 +161,12 @@ const struct cRGB roygbiv[7] = {
 const struct cRGB zero = { 0, 0, 0 };
 
 //Interrupt wait flag, button-pressed flag
-uint8_t isr_wait = 0;
-uint8_t button_pressed = 0;
+volatile uint8_t isr_wait = 0;
+volatile uint8_t button_pressed = 0;
 
 //IR TX/RX flags and attempts
-static uint8_t ir_rx_attempts = 0;
-static uint8_t ir_start_detected = 0;
+volatile uint8_t ir_rx_attempts = 0;
+volatile uint8_t ir_start_detected = 0;
 
 //Global clock prescaler for timer start/stop functions
 static uint8_t clock_prescaler;
@@ -140,22 +183,20 @@ ISR(TIM0_OVF_vect) {
 
 //Pin Change Interrupt routine
 ISR(PCINT0_vect) {
-	button_pressed = !get_bit(PINB, BTTN_PIN);
+	if (!button_pressed)
+		button_pressed = 1;
 }
 
 int main() {
 	//Initialize pin states
 	initialize_pins();
-	
-	//Enable interrupts
-	sei();
 
 	//Read user memory
 	acc_user_data(EEPROM_READ);
 
 	//Show current leds
-	Sequence_TypeDef seq = SEQUENCE_FADE_INOUT;
-	sequence_leds(seq, &leds_mem[0]);
+	Sequence_TypeDef seq = SEQUENCE_FADE_INOUT_SEQUENCE;
+	sequence_leds(seq, leds_mem);
 
 	//Define maximum sequence value
 	uint8_t seq_max;
@@ -166,11 +207,11 @@ int main() {
 			idle_ticks = 0;
 			delay(500);
 			if (!get_bit(PINB, BTTN_PIN)) {
-				sequence_leds(SEQUENCE_RX_ALERT, &leds_out[0]);
+				sequence_leds(SEQUENCE_RX_ALERT, leds_out);
 				tx_rx_ir_data(IR_RX);
 			}
 			else {
-				sequence_leds(SEQUENCE_TX_ALERT, &leds_out[0]);
+				sequence_leds(SEQUENCE_TX_ALERT, leds_out);
 				tx_rx_ir_data(IR_TX);
 			}
 		}
@@ -183,7 +224,7 @@ int main() {
 			else
 				idle_ticks++;
 		}
-		sequence_leds(seq, &leds_mem[0]);
+		sequence_leds(seq, leds_mem);
 	}
 }
 
@@ -193,7 +234,7 @@ static void send_leds(struct cRGB *leds_in, uint16_t len) {
 		leds_out_rev[i] = leds_in[LEDS_NUM - i - 1];
 		pixel_correct_color(&leds_out_rev[i]);
 	}
-	ws2812_setleds(&leds_out_rev[0], len);
+	ws2812_sendarray((uint8_t*)&leds_out_rev, len*3);
 }
 
 static void set_pixel(struct cRGB* led_in, uint8_t r, uint8_t g, uint8_t b) {
@@ -226,66 +267,69 @@ static void fill_pixel_buffer(struct cRGB* leds_in, uint8_t r, uint8_t g, uint8_
 }
 
 static uint8_t interpolate(uint8_t a, uint8_t b, uint16_t c) {
-	uint32_t out_0 = ((uint32_t)a << 8) * (255 - (uint32_t)c);
+	uint32_t out_0 = ((uint32_t)a << 8) * (256 - (uint32_t)c);
 	uint32_t out_1 = ((uint32_t)b << 8) * (uint32_t)c;
 	return((uint8_t)((out_0 + out_1) >> 16));
 }
 
-static void sequence_leds(Sequence_TypeDef seq, struct cRGB *leds_in) {
-	if (seq == SEQUENCE_FADE_IN_SEQUENCE || seq == SEQUENCE_FADE_OUT_SEQUENCE) {
-		int8_t dim_direction;
-		uint8_t i;
-		uint16_t j;
+static void sequence_leds_fade(Sequence_TypeDef seq, struct cRGB* leds_in) {
+	int16_t i;
+	uint8_t j;
+	int32_t dim_direction;
+	if (seq == SEQUENCE_FADE_IN) {
+		dim_direction = 1;
+		i = 0;
+	}
+	else if (seq == SEQUENCE_FADE_OUT) {
+		dim_direction = -1;
+		i = 255;
+	}
+	while (i >= 0 && i <= 255) {
+		for (j = 0; j < LEDS_NUM; j++) {
+			pixel_blend(&zero, &leds_in[j], &leds_out[j], i);
+			if (button_pressed)
+				return;
+		}
+		delay(5);
+		send_leds(leds_out, LEDS_NUM);
+		i += dim_direction;
+	}
+}
+
+static void sequence_leds_fade_sequence(Sequence_TypeDef seq, struct cRGB* leds_in) {
+	int16_t i;
+	uint8_t j;
+	int32_t dim_direction;
+	for (j = 0; j < LEDS_NUM; j++) {
 		if (seq == SEQUENCE_FADE_IN_SEQUENCE) {
-			dim_direction = 1;
-			j = 0;
+			dim_direction = 3;
+			i = 0;
 		}
-		if (seq == SEQUENCE_FADE_OUT_SEQUENCE) {
-			dim_direction = -1;
-			j = 255;
+		else if (seq == SEQUENCE_FADE_OUT_SEQUENCE) {
+			dim_direction = -3;
+			i = 255;
 		}
+		while (i >= 0 && i <= 255) {
+			pixel_blend(&zero, &leds_in[j], &leds_out[j], i);
+			if (button_pressed)
+				return;
+			delay(1);
+			send_leds(leds_out, LEDS_NUM);
+			i += dim_direction;
+		}
+	}
+}
+
+static void sequence_leds(Sequence_TypeDef seq, struct cRGB *leds_in) {
+	if (seq == SEQUENCE_FADE_INOUT_SEQUENCE) {
 		fill_pixel_buffer(&leds_out[0], 0, 0, 0);
-		for (i = 0; i < LEDS_NUM; i++) {
-			do {
-				if (button_pressed)
-					return;
-				pixel_blend(&zero, &leds_in[i], &leds_out[i], j);
-				send_leds(&(leds_out[0]), LEDS_NUM * 3);
-				delay(2*i);
-				j += dim_direction;
-			} while (j > 0 && j < 255);
-		}
-	}
-	else if (seq == SEQUENCE_FADE_INOUT_SEQUENCE) {
-		sequence_leds(SEQUENCE_FADE_IN_SEQUENCE, leds_in);
-		sequence_leds(SEQUENCE_FADE_OUT_SEQUENCE, leds_in);
-	}
-	else if (seq == SEQUENCE_FADE_IN || seq == SEQUENCE_FADE_OUT) {
-		int8_t dim_direction;
-		uint8_t i;
-		uint16_t j;
-		if (seq == SEQUENCE_FADE_IN) {
-			dim_direction = 1;
-			j = 0;
-		}
-		if (seq == SEQUENCE_FADE_OUT) {
-			dim_direction = -1;
-			j = 255;
-		}
-		do {
-			for (i = 0; i < LEDS_NUM; i++) {
-				if (button_pressed)
-					return;
-				pixel_blend(&zero, &leds_in[i], &leds_out[i], j);
-				j += dim_direction;
-			}
-			ws2812_setleds(&(leds_out[0]), LEDS_NUM * 3);
-			delay(2);
-		} while (j > 0 && j < 255);
+		sequence_leds_fade_sequence(SEQUENCE_FADE_IN_SEQUENCE, leds_in);
+		sequence_leds_fade_sequence(SEQUENCE_FADE_OUT_SEQUENCE, leds_in);
 	}
 	else if (seq == SEQUENCE_FADE_INOUT) {
-		sequence_leds(SEQUENCE_FADE_IN, leds_in);
-		sequence_leds(SEQUENCE_FADE_OUT, leds_in);
+		fill_pixel_buffer(&leds_out[0], 0, 0, 0);
+		sequence_leds_fade(SEQUENCE_FADE_IN, leds_in);
+		sequence_leds_fade(SEQUENCE_FADE_OUT, leds_in);
 	}
 	else if (seq == SEQUENCE_SEQUENCE) {
 		uint8_t i, j;
@@ -295,12 +339,12 @@ static void sequence_leds(Sequence_TypeDef seq, struct cRGB *leds_in) {
 				if (button_pressed)
 					return;
 				leds_out[i] = leds_in[i];
-				send_leds(&(leds_out[0]), LEDS_NUM * 3);
+				send_leds(&(leds_out[0]), LEDS_NUM);
 				delay(500);
 			}
 		}
 		fill_pixel_buffer(&leds_out[0], 0, 0, 0);
-		send_leds(&(leds_out[0]), LEDS_NUM * 3);
+		send_leds(&(leds_out[0]), LEDS_NUM);
 	}
 	else if (seq == SEQUENCE_PULSE) {
 		uint8_t i;
@@ -315,9 +359,9 @@ static void sequence_leds(Sequence_TypeDef seq, struct cRGB *leds_in) {
 		for (i = 0; i < 5; i++) {
 			if (button_pressed)
 				return;
-			send_leds(&leds_in[0], LEDS_NUM * 3);
+			send_leds(&leds_in[0], LEDS_NUM);
 			delay(250);
-			send_leds(&leds_out[0], LEDS_NUM * 3);
+			send_leds(&leds_out[0], LEDS_NUM);
 			delay(500);
 		}
 	}
@@ -330,16 +374,16 @@ static void sequence_leds(Sequence_TypeDef seq, struct cRGB *leds_in) {
 				for (j = 0; j < LEDS_NUM; j++) {
 					if (button_pressed)
 						return;
-					pixel_blend(&leds_in[(i + j) % LEDS_NUM], &leds_in[(i + j + 1) % LEDS_NUM], &leds_out[i], k);
+					pixel_blend(&leds_in[(i + j) % LEDS_NUM], &leds_in[(i + j + 1) % LEDS_NUM], &leds_out[j], k);
 				}
-				send_leds(&leds_out[0], LEDS_NUM * 3);
+				send_leds(&leds_out[0], LEDS_NUM);
 				delay(5);
 			}
 		}
 		for (i = 0; i < LEDS_NUM; i++) {
 			leds_tmp[i] = leds_out[i];
 		}
-		sequence_leds(SEQUENCE_FADE_OUT, &leds_tmp[0]);
+		sequence_leds(SEQUENCE_FADE_OUT, leds_tmp);
 	}
 	else if (seq == SEQUENCE_CHASE) {
 		fill_pixel_buffer(&leds_out[0], 0, 0, 0);
@@ -357,7 +401,7 @@ static void sequence_leds(Sequence_TypeDef seq, struct cRGB *leds_in) {
 					pixel_blend(&zero, &leds_out[active_led], &leds_out[active_led], 255 - k); //Finish at zero
 					pixel_blend(&leds_in[active_led], &leds_in[active_led_right], &leds_out[active_led_right], k);
 					pixel_blend(&zero, &leds_out[active_led_right], &leds_out[active_led_right], k); // Start from zero
-					send_leds(&leds_out[0], LEDS_NUM * 3);
+					send_leds(&leds_out[0], LEDS_NUM);
 					delay(2);
 				}
 			}
@@ -397,7 +441,7 @@ static void sequence_leds(Sequence_TypeDef seq, struct cRGB *leds_in) {
 							pixel_blend(&zero, &leds_out[active_led_right_1], &leds_out[active_led_right_1], k); //Start from zero
 						}
 
-						send_leds(&leds_out[0], LEDS_NUM * 3);
+						send_leds(&leds_out[0], LEDS_NUM);
 						delay(1);
 					}
 				}
@@ -411,29 +455,29 @@ static void sequence_leds(Sequence_TypeDef seq, struct cRGB *leds_in) {
 				active_led = (i + j) % LEDS_NUM;
 				leds_tmp[active_led] = roygbiv[active_led];
 			}
-			sequence_leds(SEQUENCE_FADE_IN, &leds_tmp[0]);
-			sequence_leds(SEQUENCE_WAVE, &leds_tmp[0]);
-			sequence_leds(SEQUENCE_FADE_OUT, &leds_tmp[0]);
+			sequence_leds(SEQUENCE_FADE_IN, leds_tmp);
+			sequence_leds(SEQUENCE_WAVE, leds_tmp);
+			sequence_leds(SEQUENCE_FADE_OUT, leds_tmp);
 		}
 	}
 	else if (seq == SEQUENCE_RX_ALERT) {
 		fill_pixel_buffer(&leds_out[0], 0, 120, 0);
-		send_leds(&leds_out[0], LEDS_NUM * 3);
+		send_leds(&leds_out[0], LEDS_NUM);
 		delay(500);
 		fill_pixel_buffer(&leds_out[0], 0, 20, 0);
-		send_leds(&leds_out[0], LEDS_NUM * 3);
+		send_leds(&leds_out[0], LEDS_NUM);
 	}
 	else if (seq == SEQUENCE_TX_ALERT) {
 		fill_pixel_buffer(&leds_out[0], 0, 0, 120);
-		send_leds(&leds_out[0], LEDS_NUM * 3);
+		send_leds(&leds_out[0], LEDS_NUM);
 		delay(250);
 		fill_pixel_buffer(&leds_out[0], 0, 0, 20);
-		send_leds(&leds_out[0], LEDS_NUM * 3);
+		send_leds(&leds_out[0], LEDS_NUM);
 	}
 }
 
 static void acc_user_data(EEPROM_Access_TypeDef acc) {
-	eeprom_access(acc, (uint8_t*)&leds_memory, &leds_memory, LEDS_NUM*3);
+	eeprom_access(acc, (uint8_t*)&leds_mem, (uint8_t*)&leds_memory, LEDS_NUM*3);
 	eeprom_access(acc, (uint8_t*)&friends_found, &friends_cnt, 1);
 }
 
@@ -562,9 +606,9 @@ static void tx_rx_ir_data(IR_TypeDef use) {
 						leds_tmp[i] = leds_mem[i];
 				}
 				for (i = 0; i < 3; i++) {
-					send_leds(&leds_tmp[0], LEDS_NUM * 3);
+					send_leds(&leds_tmp[0], LEDS_NUM);
 					delay(1000);
-					send_leds(&leds_out[0], LEDS_NUM * 3);
+					send_leds(&leds_out[0], LEDS_NUM);
 					delay(1000);
 				}
 			}
@@ -598,7 +642,6 @@ static void tx_rx_ir_data(IR_TypeDef use) {
 static void enable_gen_timer(uint8_t prescaler) {
 	TCCR0A = 0x00; //Enable Normal mode
 	TCCR0B = 0x00; //Normal timer mode, clock off
-	TIMSK = _BV(TOIE0); //Enable Timer overflow interrupt
 	clock_prescaler = prescaler;
 	start_timer();
 }
@@ -606,7 +649,6 @@ static void enable_gen_timer(uint8_t prescaler) {
 static void enable_tx_timer() {
 	TCCR0A = 0x02 << 5 | 0x03; //Enable Fast PWM and Mode 7 for WGM
 	TCCR0B = (0x01 << 3); //Mode 7 for WGM
-	TIMSK = _BV(TOIE0); //Enable Timer overflow interrupt
 	clock_prescaler = CLK_PRESCALER_1024;
 	start_timer();
 }
@@ -637,17 +679,21 @@ static uint8_t get_bit_for_timer(uint8_t x, uint8_t n) {
 }
 
 static void initialize_pins() {
-	PORTB = _BV(IR_TX_PIN); //Set IR TX pin as tri-state before high
-	DDRB = _BV(PWR_EN_PIN) | _BV(IR_TX_PIN) | _BV(LED_DO_PIN); //Set PWR_EN low, Set IR TX high, Set LED DO low
+	PORTA = _BV(IR_TX_PIN); //Set IR TX pin as tri-state before high
+	DDRA = _BV(PWR_EN_PIN) | _BV(IR_TX_PIN); //Set PWR_EN low, Set IR TX high, Set LED DO low
 
-	GIMSK |= _BV(PCIE);		//Set pin change interrupt enable bit
-	MCUCR |= _BV(ISC01);	//Set to falling edge detection
-	PCMSK |= _BV(BTTN_PIN);	//Set button pin as interrupt source
+	GIMSK |= _BV(PCIE0);	//Set pin change interrupt enable bit
+	PCMSK0 |= _BV(BTTN_PIN);	//Set button pin as interrupt source
+
+	TIMSK0 |= _BV(TOIE0);	//Enable Timer overflow interrupt
+	
+	//Enable interrupts
+	sei();
 }
 
 static void pwr_off() {
 	acc_user_data(EEPROM_WRITE);
-	DDRB &= ~_BV(PWR_EN_PIN);
+	PORTB &= ~_BV(PWR_EN_PIN);
 }
 
 static uint8_t ir_rx_read() {
@@ -663,34 +709,37 @@ static uint8_t ir_rx_read() {
 		@ clk / 1024 = (1024 * 256) / 8MHz = 32.768ms
 */
 static void delay(uint16_t time_ms) {
-	enable_gen_timer(CLK_PRESCALER_64);
 
-	uint16_t ticks, ticks_div;
+	enable_gen_timer(CLK_PRESCALER_8);
+	
+	/*
 	switch (clock_prescaler) {
-		case CLK_PRESCALER_NONE :
+		case CLK_PRESCALER_NONE:
 			ticks_div = (uint16_t)(8); //Fixed-point (8.8, 16bit) 0.032 representation
 			break;
-		case CLK_PRESCALER_8 :
+		case CLK_PRESCALER_8:
 			ticks_div = (uint16_t)(66); //Fixed-point (8.8, 16bit) 0.256 representation
 			break;
-		case CLK_PRESCALER_64 :
+		case CLK_PRESCALER_64:
 			ticks_div = (uint16_t)(2 << 8 | 12); //Fixed-point (8.8, 16bit) 2.048 representation
 			break;
-		case CLK_PRESCALER_256 :
+		case CLK_PRESCALER_256:
 			ticks_div = (uint16_t)(8 << 8 | 49); //Fixed-point (8.8, 16bit) 8.192 representation
 			break;
-		case CLK_PRESCALER_1024 :
+		case CLK_PRESCALER_1024:
 			ticks_div = (uint16_t)(32 << 8 | 197); //Fixed-point (8.8, 16bit) 32.768 representation
 			break;
-		default :
+		default:
 			ticks_div = time_ms;
 			break;
 	}
+	*/
+	uint16_t ticks, ticks_div;
+	ticks_div = (uint16_t)(66);
+	ticks = ((uint32_t)time_ms << 8) / (uint32_t)ticks_div;
 
-	ticks = (uint16_t)((((uint32_t)time_ms << 8) / (uint32_t)ticks_div) >> 16);
-
-	uint8_t ticks_cnt;
-	for (ticks_cnt = ticks; ticks_cnt; ticks_cnt--) {
+	uint16_t ticks_cnt;
+	for (ticks_cnt = 0; ticks_cnt < ticks; ticks_cnt++) {
 		start_timer();
 		while (isr_wait) {
 			//Do nothing.
