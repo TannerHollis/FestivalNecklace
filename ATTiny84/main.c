@@ -39,11 +39,10 @@ typedef enum {
 	SEQUENCE_FADE_IN,
 	SEQUENCE_FADE_OUT,
 	SEQUENCE_TX_ALERT,
-	SEQUENCE_RX_ALERT
+	SEQUENCE_RX_ALERT,
 	SEQUENCE_FADE_INOUT_SEQUENCE,
 	SEQUENCE_FADE_INOUT,
 	SEQUENCE_FLASH,
-	SEQUENCE_SEQUENCE,
 	SEQUENCE_PULSE,
 	SEQUENCE_ROTATE,
 	SEQUENCE_CHASE,
@@ -135,9 +134,9 @@ struct cRGB EEMEM leds_memory[LEDS_NUM] = {
 		.b = 255
 	},
 	[9] {
-		.r = 0,
+		.r = 128,
 		.g = 128,
-		.b = 128
+		.b = 0
 	}
 };
 uint8_t EEMEM friends_cnt = 0;
@@ -272,52 +271,78 @@ static uint8_t interpolate(uint8_t a, uint8_t b, uint16_t c) {
 	return((uint8_t)((out_0 + out_1) >> 16));
 }
 
-static void sequence_leds_fade(Sequence_TypeDef seq, struct cRGB* leds_in) {
+static void sequence_leds_fade(Sequence_TypeDef seq, struct cRGB* leds_in, int8_t speed) {
 	int16_t i;
 	uint8_t j;
 	int32_t dim_direction;
 	if (seq == SEQUENCE_FADE_IN) {
-		dim_direction = 1;
+		dim_direction = speed;
 		i = 0;
 	}
 	else if (seq == SEQUENCE_FADE_OUT) {
-		dim_direction = -1;
+		dim_direction = -speed;
 		i = 255;
 	}
 	while (i >= 0 && i <= 255) {
 		for (j = 0; j < LEDS_NUM; j++) {
 			pixel_blend(&zero, &leds_in[j], &leds_out[j], i);
-			if (button_pressed)
-				return;
+			
 		}
-		delay(5);
-		send_leds(leds_out, LEDS_NUM);
+        send_leds(leds_out, LEDS_NUM);
+        
+        delay(5);
 		i += dim_direction;
+
+        if (button_pressed)
+            return;
 	}
 }
 
-static void sequence_leds_fade_sequence(Sequence_TypeDef seq, struct cRGB* leds_in) {
+static void sequence_leds_fade_sequence(Sequence_TypeDef seq, struct cRGB* leds_in, int8_t speed) {
 	int16_t i;
 	uint8_t j;
 	int32_t dim_direction;
 	for (j = 0; j < LEDS_NUM; j++) {
 		if (seq == SEQUENCE_FADE_IN_SEQUENCE) {
-			dim_direction = 3;
+			dim_direction = speed;
 			i = 0;
 		}
 		else if (seq == SEQUENCE_FADE_OUT_SEQUENCE) {
-			dim_direction = -3;
+			dim_direction = -speed;
 			i = 255;
 		}
 		while (i >= 0 && i <= 255) {
 			pixel_blend(&zero, &leds_in[j], &leds_out[j], i);
-			if (button_pressed)
-				return;
+            send_leds(leds_out, LEDS_NUM);
+
 			delay(1);
-			send_leds(leds_out, LEDS_NUM);
 			i += dim_direction;
+
+            if (button_pressed)
+                return;
 		}
 	}
+}
+
+static void sequence_leds_shift_fade(struct cRGB* leds_in, uint8_t shift, uint8_t speed) {
+    uint8_t j;
+    uint16_t i;
+    for (i = 0; i < LEDS_NUM; i++) {
+        j = (i + shift) % (LEDS_NUM);
+        leds_tmp[i] = leds_in[j];
+    }
+    for (i = 0; i < 255; i += speed) {
+        for (j = 0; j < LEDS_NUM; j++) {
+            pixel_blend(&leds_in[j], &leds_tmp[j], &leds_out[j], i);
+        }
+        send_leds(leds_out, LEDS_NUM);
+
+        delay(1);
+        i += speed;
+
+        if (button_pressed)
+            return;
+    }
 }
 
 static void sequence_leds(Sequence_TypeDef seq, struct cRGB *leds_in) {
@@ -330,21 +355,6 @@ static void sequence_leds(Sequence_TypeDef seq, struct cRGB *leds_in) {
 		fill_pixel_buffer(&leds_out[0], 0, 0, 0);
 		sequence_leds_fade(SEQUENCE_FADE_IN, leds_in);
 		sequence_leds_fade(SEQUENCE_FADE_OUT, leds_in);
-	}
-	else if (seq == SEQUENCE_SEQUENCE) {
-		uint8_t i, j;
-		for (j = 0; j < 5; j++) {
-			fill_pixel_buffer(&leds_out[0], 0, 0, 0);
-			for (i = 0; i < LEDS_NUM; i++) {
-				if (button_pressed)
-					return;
-				leds_out[i] = leds_in[i];
-				send_leds(&(leds_out[0]), LEDS_NUM);
-				delay(500);
-			}
-		}
-		fill_pixel_buffer(&leds_out[0], 0, 0, 0);
-		send_leds(&(leds_out[0]), LEDS_NUM);
 	}
 	else if (seq == SEQUENCE_PULSE) {
 		uint8_t i;
